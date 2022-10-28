@@ -153,3 +153,29 @@ GPS_DD::dump2JSON
   return result;
 }
 
+bool
+GPS_DD::JSON2Object
+(Json::Value arg_jv)
+{
+
+  if ((arg_jv.isNull() == true) ||
+      (arg_jv.isObject() != true))
+    {
+      return false;
+    }
+
+  if (((arg_jv["latitude"]).isNull() == true) ||
+      ((arg_jv["longitude"]).isNull() == true) ||
+      ((arg_jv["latitude"]).isDouble() != true) ||
+      ((arg_jv["longitude"]).isDouble() != true))
+    {
+      return false;
+    }
+
+  // we allow GPS_DD to be modified (for mobility)
+  this->latitude = (arg_jv["latitude"]).asDouble();
+  this->longitude = (arg_jv["longitude"]).asDouble();
+
+  return true;
+}
+

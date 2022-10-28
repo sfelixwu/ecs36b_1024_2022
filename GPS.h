@@ -17,7 +17,8 @@ class GPS_DD
   double getLatitude();
   double getLongitude();
   double distance(GPS_DD);
-  Json::Value dump2JSON();
+  virtual Json::Value dump2JSON();
+  virtual bool JSON2Object(Json::Value);
 };
 
 #endif /* _GPS_H_ */
